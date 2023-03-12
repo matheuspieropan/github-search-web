@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './page/home/home.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,12 @@ import { HomeComponent } from './page/home/home.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot({
+      timeOut: 4000,
+      closeButton: true,
+      progressBar: true
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

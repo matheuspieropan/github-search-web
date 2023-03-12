@@ -8,7 +8,7 @@ import { Repositorie } from 'src/app/model/repositorie';
 })
 export class RepositorieService {
 
-  url: string = 'http://pieropan.up.railway.app/api/search'
+  url: string = 'https://pieropan.up.railway.app/api/search'
   constructor(private http: HttpClient) { }
 
   getRepositories(userName: string) : Observable<Repositorie>{

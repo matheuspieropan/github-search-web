@@ -15,7 +15,7 @@ import { UserService } from 'src/app/services/user.service';
 export class HomeComponent implements OnInit {
 
   constructor(private userService: UserService, private repositorieServive: RepositorieService, private toastr: ToastrService) { }
-  
+
   ngOnInit(): void {
     this.toastr.toastrConfig.positionClass = 'toast-bottom-center';
   }
@@ -33,22 +33,33 @@ export class HomeComponent implements OnInit {
 
 
   login = new FormGroup({
-    userName: new FormControl('', Validators.min(1)),
+    userName: new FormControl('', Validators.minLength(1)),
   });
 
   getUserName(): void {
-    this.userService.getUserName(this.login.controls.userName.value).subscribe(data => {
-      this.user = data;
-      this.showModal = true;
-      this.repositories = null;
-    }, ex => {
-      this.toastr.error(ex.error);
-    })
+    if (this.login.valid) {
+      this.userService.getUserName(this.login.controls.userName.value).subscribe(data => {
+        this.user = data;
+        this.showModal = true;
+      }, ex => {
+        this.toastr.error(ex.error.message);
+      })
+      this.clear();
+    }
   }
 
   getRepositories(): void {
     this.repositorieServive.getRepositories(this.user.login).subscribe(data => {
       this.repositories = data;
     })
+  }
+
+  clear(): void {
+    this.repositories = null;
+    this.login.reset();
+  }
+
+  disabledField(): boolean {
+    return !this.login.valid;
   }
 }

@@ -1,6 +1,6 @@
 .app-user {
-    background-color: rgb(6 43 76);
-    border: none;
+    background-color: #103778;
+    border-color: white;
 }
 
 img {
@@ -18,4 +18,8 @@ img {
 
 a {
     color: white;
+}
+
+div {
+    word-wrap: break-word;
 }

@@ -37,13 +37,12 @@ export class HomeComponent implements OnInit {
   });
 
   getUserName(): void {
-    console.log('vasco')
     this.userService.getUserName(this.login.controls.userName.value).subscribe(data => {
       this.user = data;
       this.showModal = true;
       this.repositories = null;
     }, ex => {
-      this.toastr.error(ex.message);
+      this.toastr.error(ex.error);
     })
   }
 
